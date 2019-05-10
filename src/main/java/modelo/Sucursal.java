@@ -3,11 +3,19 @@ package modelo;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bson.types.ObjectId;
+
 public class Sucursal {
+	
+	private ObjectId id;
 	private Empleado encargado;
 	private List<Empleado> empleados=new ArrayList<Empleado>();
 	private int ticketFsical;
 	private Domicilio domicilio;
+	
+	public Sucursal() {
+		
+	}
 	
 	public Sucursal(Empleado encargado, List<Empleado> empleados, int ticketFsical,Domicilio domicilio) {
 		super();
@@ -17,6 +25,14 @@ public class Sucursal {
 		this.domicilio = domicilio;
 	}
 
+	public ObjectId getId() {
+		return id;
+	}
+
+	public void setId(ObjectId id) {
+		this.id = id;
+	}
+	
 	public Empleado getEncargado() {
 		return encargado;
 	}
@@ -51,7 +67,7 @@ public class Sucursal {
 
 	@Override
 	public String toString() {
-		return "Sucursal [encargado=" + encargado + ", empleados=" + empleados + ", ticketFsical=" + ticketFsical
+		return "Sucursal [id=" + id + ", encargado=" + encargado + ", empleados=" + empleados + ", ticketFsical=" + ticketFsical
 				+ ", domicilio=" + domicilio + "]";
 	}
 	

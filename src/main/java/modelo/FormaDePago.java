@@ -1,8 +1,13 @@
 package modelo;
 
 public class FormaDePago {
+	
 	private String nombre;
 
+	public FormaDePago() {
+		
+	}
+	
 	public FormaDePago(String nombre) {
 		super();
 		this.nombre = nombre;

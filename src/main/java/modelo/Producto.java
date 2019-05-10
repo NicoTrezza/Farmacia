@@ -1,11 +1,19 @@
 package modelo;
 
+import org.bson.types.ObjectId;
+
 public class Producto {
+	
+	private ObjectId id;
 	private String tipo;
 	private String descripcion;
 	private String laboratorio;
 	private int codigo;
 	private float precio;
+	
+	public Producto() {
+		
+	}
 	
 	public Producto(String tipo, String descripcion, String laboratorio, int codigo, float precio) {
 		super();
@@ -14,6 +22,14 @@ public class Producto {
 		this.laboratorio = laboratorio;
 		this.codigo = codigo;
 		this.precio = precio;
+	}
+	
+	public ObjectId getId() {
+		return id;
+	}
+
+	public void setId(ObjectId id) {
+		this.id = id;
 	}
 
 	public String getTipo() {
@@ -58,7 +74,8 @@ public class Producto {
 
 	@Override
 	public String toString() {
-		return "Producto [tipo=" + tipo + ", descripcion=" + descripcion + ", laboratorio=" + laboratorio + ", codigo="
+		return "Producto [id=" + id + ", tipo=" + tipo + ", descripcion=" + descripcion + ", laboratorio=" + laboratorio + ", codigo="
 				+ codigo + ", precio=" + precio + "]";
 	}
+
 }

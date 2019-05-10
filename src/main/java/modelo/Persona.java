@@ -1,17 +1,34 @@
 package modelo;
 
+import org.bson.types.ObjectId;
+
 public class Persona {
+
+	private ObjectId id;
 	private String nombre;
 	private String apellido;
 	private int dni;
+	private ObraSocial obraSocial;
 	private Domicilio domicilio;
 	
-	public Persona(String nombre, String apellido, int dni, Domicilio domicilio) {
-		super();
+	public Persona() {
+		
+	}
+	
+	public Persona(String nombre, String apellido, int dni, ObraSocial obraSocial, Domicilio domicilio) {
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.dni = dni;
+		this.obraSocial = obraSocial;
 		this.domicilio = domicilio;
+	}
+
+	public ObjectId getId() {
+		return id;
+	}
+
+	public void setId(ObjectId id) {
+		this.id = id;
 	}
 
 	public String getNombre() {
@@ -38,6 +55,14 @@ public class Persona {
 		this.dni = dni;
 	}
 
+	public ObraSocial getObraSocial() {
+		return obraSocial;
+	}
+
+	public void setObraSocial(ObraSocial obraSocial) {
+		this.obraSocial = obraSocial;
+	}
+
 	public Domicilio getDomicilio() {
 		return domicilio;
 	}
@@ -48,8 +73,8 @@ public class Persona {
 
 	@Override
 	public String toString() {
-		return "Persona [nombre=" + nombre + ", apellido=" + apellido + ", dni=" + dni + ", domicilio=" + domicilio
-				+ "]";
+		return "Persona [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", dni=" + dni + ", obraSocial="
+				+ obraSocial + ", domicilio=" + domicilio + "]";
 	}
 	
 }
