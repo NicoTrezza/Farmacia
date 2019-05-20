@@ -40,7 +40,11 @@ public class ProductoDB extends Conexion {
 	}
 
 	public UpdateResult actualizarPrecio(int codigo, float precio) throws Exception {
-		return this.coleccion.updateOne(eq("codigo", codigo), combine(set("precio", precio)));
+		return this.coleccion.updateOne(eq("codigo", codigo), combine(set("precio", precio),set("precio", precio)));
+	}
+	
+	public UpdateResult actualizar(int codigo, String descripcion,String laboratorio) throws Exception {
+		return this.coleccion.updateOne(eq("codigo", codigo), combine(set("descripcion", descripcion),set("laboratorio", laboratorio)));
 	}
 
 	public DeleteResult eliminar(int codigo) throws Exception {

@@ -19,10 +19,14 @@ public class TestProducto {
 		
 		// 02.agregar objetos
 		try {
-			db.insertar(new Producto("Bebida", "Coca-Cola Zero", "Coca-Cola Company", 10001, 20));
-			db.insertar(new Producto("Bebida", "Coca-Cola", "Coca-Cola Company", 10036, 18));
-			db.insertar(new Producto("Aseo", "Shampoo Sedal", "P&G", 10022, 30));
-			db.insertar(new Producto("Alimento", "Frutillas", "ArgentinaRural", 10101, 64));
+			db.insertar(new Producto("Comprimidos", "Ronyol", "Baliarda", 10001, 20));
+			db.insertar(new Producto("Comprimidos", "Clonagin", "INVESTI", 10006, 18));
+			db.insertar(new Producto("Comprimidos", "Biperineto", "Bagó", 10011, 30));
+			db.insertar(new Producto("Comprimidos", "Aspirina", "BAYER", 10018, 30));
+			db.insertar(new Producto("Comprimidos", "Levo-tiroxina", "GSK", 10019, 30));
+			db.insertar(new Producto("Comprimidos", "semanar 160", "MA", 10022, 30));
+			db.insertar(new Producto("Comprimidos", "semanar 80", "MA", 10028, 30));
+			db.insertar(new Producto("Intravenosa", "Halopidol Decanoato", "DF", 10101, 64));
 		} catch (Exception e) {
 			System.out.println(e);
 		}
@@ -40,7 +44,9 @@ public class TestProducto {
 		
 		// 04.modificar un objeto
 		try {
-			System.out.println(db.actualizarPrecio(10001, 30.0f));
+			System.out.println(db.actualizarPrecio(10101, 120.0f));
+			System.out.println(db.actualizar(10101, "Intraarterial","Halopidol Decanoato 3ml"));
+			
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -53,9 +59,9 @@ public class TestProducto {
 		}
 		// 06.eliminar objetos
 		try {
-			db.insertar(new Producto("Bebida", "Coca-Cola Zero2", "Coca-Cola Company", 10001, 20));
-			db.insertar(new Producto("Bebida", "Coca-Cola2", "Coca-Cola Company", 10036, 18));
-			System.out.println(db.eliminarProductos("Coca-Cola Company"));
+			db.insertar(new Producto("Comprimidos", "semanar 40", "MA", 10022, 30));
+			db.insertar(new Producto("Comprimidos", "semanar 120", "MA", 10028, 30));
+			System.out.println(db.eliminarProductos("MA"));
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
