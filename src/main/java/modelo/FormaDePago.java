@@ -23,6 +23,6 @@ public class FormaDePago {
 
 	@Override
 	public String toString() {
-		return "FormaDePago [nombre=" + nombre + "]";
+		return "FormaDePago [" + nombre + "]";
 	}
 }

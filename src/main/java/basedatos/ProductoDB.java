@@ -39,16 +39,16 @@ public class ProductoDB extends Conexion {
 		return this.coleccion.find(eq("codigo", codigo)).first();
 	}
 
-	public UpdateResult actualizarPrecio(int codigo, float precio) throws Exception {
-		return this.coleccion.updateOne(eq("codigo", codigo), combine(set("precio", precio),set("precio", precio)));
+	public UpdateResult actualizarPrecio(Producto producto, float precio) throws Exception {
+		return this.coleccion.updateOne(eq("codigo", producto.getCodigo()), combine(set("precio", precio)));
 	}
 	
 	public UpdateResult actualizar(int codigo, String descripcion,String laboratorio) throws Exception {
 		return this.coleccion.updateOne(eq("codigo", codigo), combine(set("descripcion", descripcion),set("laboratorio", laboratorio)));
 	}
 
-	public DeleteResult eliminar(int codigo) throws Exception {
-		return this.coleccion.deleteOne(eq("codigo", codigo));
+	public DeleteResult eliminar(Producto producto) throws Exception {
+		return this.coleccion.deleteOne(eq("codigo", producto.getCodigo()));
 	}
 
 	public DeleteResult eliminarProductos() throws Exception {
