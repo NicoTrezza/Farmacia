@@ -10,18 +10,18 @@ public class Sucursal {
 	private ObjectId id;
 	private Empleado encargado;
 	private List<Empleado> empleados=new ArrayList<Empleado>();
-	private int ticketFsical;
+	private String ticketFiscal;
 	private Domicilio domicilio;
 	
 	public Sucursal() {
 		
 	}
 	
-	public Sucursal(Empleado encargado, List<Empleado> empleados, int ticketFsical,Domicilio domicilio) {
+	public Sucursal(Empleado encargado, List<Empleado> empleados, String ticketFiscal,Domicilio domicilio) {
 		super();
 		this.encargado = encargado;
 		this.empleados = empleados;
-		this.ticketFsical = ticketFsical;
+		this.ticketFiscal = ticketFiscal;
 		this.domicilio = domicilio;
 	}
 
@@ -49,12 +49,12 @@ public class Sucursal {
 		this.empleados = empleados;
 	}
 
-	public int getTicketFsical() {
-		return ticketFsical;
+	public String getTicketFiscal() {
+		return ticketFiscal;
 	}
 
-	public void setTicketFsical(int ticketFsical) {
-		this.ticketFsical = ticketFsical;
+	public void setTicketFiscal(String ticketFiscal) {
+		this.ticketFiscal = ticketFiscal;
 	}
 
 	public Domicilio getDomicilio() {
@@ -67,7 +67,7 @@ public class Sucursal {
 
 	@Override
 	public String toString() {
-		return "Sucursal [id=" + id + ", encargado=" + encargado + ", empleados=" + empleados + ", ticketFsical=" + ticketFsical
+		return "Sucursal [id=" + id + ", encargado=" + encargado + ", empleados=" + empleados + ", ticketFiscal=" + ticketFiscal
 				+ ", domicilio=" + domicilio + "]";
 	}
 	
