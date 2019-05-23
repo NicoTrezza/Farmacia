@@ -1,11 +1,10 @@
 package modelo;
 
 public class Empleado extends Persona {
-	
+
 	private long cuil;
-	
+
 	public Empleado() {
-		
 	}
 
 	public Empleado(String nombre, String apellido, int dni, ObraSocial obraSocial, Domicilio domicilio, long cuil) {
@@ -23,7 +22,9 @@ public class Empleado extends Persona {
 
 	@Override
 	public String toString() {
-		return "Empleado [cuil=" + cuil + ", toString()=" + super.toString() + "]";
+		return "Empleado [cuil=" + cuil + ", getId()=" + getId() + ", getNombre()=" + getNombre() + ", getApellido()="
+				+ getApellido() + ", getDni()=" + getDni() + ", getObraSocial()=" + getObraSocial()
+				+ ", getDomicilio()=" + getDomicilio() + "]";
 	}
-	
+
 }
