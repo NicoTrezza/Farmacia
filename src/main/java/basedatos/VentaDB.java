@@ -59,4 +59,41 @@ public class VentaDB extends Conexion {
 
 		return lista;
 	}
+	
+	public List<Venta> consulta1(LocalDate fechaInicio,LocalDate fechaFin){
+		List<Venta> lstVentas = new ArrayList<Venta>();
+		Document query= new Document();
+		query.append("fecha",new Document().append("$lte",fechaFin).append("$gte",fechaInicio));
+		for (Venta venta : this.coleccion.find(query)) {
+			lstVentas.add(venta);
+		}
+		return lstVentas;
+	}
+	
+	public List<Venta> consulta2(Boolean obraSocial,LocalDate fechaInicio,LocalDate fechaFin){
+		List<Venta> lstVentas = new ArrayList<Venta>();
+		Document query= new Document();
+		if (obraSocial) {
+			query.append("fecha",new Document().append("$lte",fechaFin).append("$gte",fechaInicio));
+			query.append("cliente.obraSocial", new Document().append("$ne", null));
+		} else {
+			query.append("fecha",new Document().append("$lte",fechaFin).append("$gte",fechaInicio));
+			query.append("cliente.obraSocial", null);
+		}
+		for (Venta venta : this.coleccion.find(query)) {
+			lstVentas.add(venta);
+		}
+		return lstVentas;
+	}
+	
+	public List<Venta> consulta3(String formaDePago,LocalDate fechaInicio,LocalDate fechaFin){
+		List<Venta> lstVentas = new ArrayList<Venta>();
+		Document query= new Document();
+		query.append("formaDePago.nombre", formaDePago);
+		query.append("fecha",new Document().append("$lte",fechaFin).append("$gte",fechaInicio));
+		for (Venta venta : this.coleccion.find(query)) {
+			lstVentas.add(venta);
+		}
+		return lstVentas;
+	}
 }
