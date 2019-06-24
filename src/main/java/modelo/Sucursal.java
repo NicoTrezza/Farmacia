@@ -73,9 +73,15 @@ public class Sucursal {
 	}
 
 	public Document toJson() {
+		
+		List<Document> empleados = new ArrayList<Document>();
+		for (Empleado empleado : this.getEmpleados()) {
+			empleados.add(empleado.toJson());
+		}
+		
 		return new Document("_id", getId())
 				.append("domicilio", getDomicilio().toJson())
-//				.append("empleados", getEmpleados())
+				.append("empleados", empleados)
 				.append("encargado", getEncargado().toJson())
 				.append("ticketFiscal", getTicketFiscal())
 			;

@@ -67,13 +67,14 @@ public class TestTraer {
 			System.out.println("Venta : "+venta.toJson().toJson(new JsonWriterSettings(JsonMode.SHELL)));
 		}
 		
-
-		
+		//test 1
 //		System.out.println(VentaABM.getInstance().DetalleVentas(LocalDate.of(2013, 6, 10),LocalDate.of(2019, 10, 02),SucursalABM.getInstance().encontrar("0001-00001234")));
-//		
-//		for (Venta venta : VentaABM.getInstance().DetalleVentas(LocalDate.of(2013, 6, 10),LocalDate.of(2019, 10, 02))) {
-//			System.out.println(venta.toJson());
-//		}
+		float total = 0;
+		for (Venta venta : VentaABM.getInstance().DetalleVentas(LocalDate.of(2013, 6, 10),LocalDate.of(2019, 10, 02),SucursalABM.getInstance().encontrar("0001-00001234"))) {
+			System.out.println("\nVenta : "+venta.toJson().toJson(new JsonWriterSettings(JsonMode.SHELL)));
+			total += venta.getTotalVenta();
+		}
+		System.out.println("total: "+total);
 		
 	}
 

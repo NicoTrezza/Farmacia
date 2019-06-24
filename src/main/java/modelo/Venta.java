@@ -135,17 +135,22 @@ public class Venta {
 	}
 	
 	public Document toJson() {
+	
+		List<Document> productosVendidos = new ArrayList<Document>();
+		for (ProductoVendido productoVendido : this.getProductosVendidos()) {
+			productosVendidos.add(productoVendido.toJson());
+		}
+
 		return new Document("_id", getId())
 				.append("cliente", getCliente().toJson())
 				.append("empleadoQueAtendio", getEmpleadoQueAtendio().toJson())
 				.append("empleadoQueCobro", getEmpleadoQueCobro().toJson())
-//				.append("fecha", getFecha())
+				.append("fecha", getFecha().toString())
 				.append("formaDePago", getFormaDePago().toJson())
 				.append("numeroTicket", this.getNumeroTicket())
-//				.append("productosVendidos", this.getProductosVendidos().iterator().)
+				.append("productosVendidos", productosVendidos )
 				.append("sucursal", getSucursal().toJson())
 				.append("numeroTicket", this.getNumeroTicket())
-				
 			;
 	}
 
