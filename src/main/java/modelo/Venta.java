@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bson.Document;
 import org.bson.types.ObjectId;
 
 public class Venta {
@@ -17,22 +18,24 @@ public class Venta {
 	private Empleado empleadoQueAtendio;
 	private Empleado empleadoQueCobro;
 	private Cliente cliente;
+	private Sucursal sucursal;
 
 	public Venta() {
 
 	}
 
 	public Venta(LocalDate fecha, int numeroTicket, FormaDePago formaDePago, List<ProductoVendido> productosVendidos,
-			Empleado empleadoQueAtendio, Empleado empleadoQueCobro, Cliente cliente) {
+			Empleado empleadoQueAtendio, Empleado empleadoQueCobro, Cliente cliente,Sucursal sucursal) {
 		super();
 		this.fecha = fecha;
 		this.numeroTicket = numeroTicket;
-		this.totalVenta = totalVenta();
 		this.formaDePago = formaDePago;
 		this.productosVendidos = productosVendidos;
 		this.empleadoQueAtendio = empleadoQueAtendio;
 		this.empleadoQueCobro = empleadoQueCobro;
 		this.cliente = cliente;
+		this.totalVenta = totalVenta();
+		this.sucursal = sucursal;
 	}
 
 	public ObjectId getId() {
@@ -107,6 +110,14 @@ public class Venta {
 		this.cliente = cliente;
 	}
 
+	public Sucursal getSucursal() {
+		return sucursal;
+	}
+
+	public void setSucursal(Sucursal sucursal) {
+		this.sucursal = sucursal;
+	}
+
 	private float totalVenta() {
 		float total = 0;
 		for (ProductoVendido productoV : productosVendidos) {
@@ -118,8 +129,24 @@ public class Venta {
 	@Override
 	public String toString() {
 		return "Venta [id=" + id + ", fecha=" + fecha + ", numeroTicket=" + numeroTicket + ", totalVenta=" + totalVenta
-				+ ", formaDePago=" + formaDePago + ", productosVendidos=" + productosVendidos + ", empleadoQueAtendio="
-				+ empleadoQueAtendio + ", empleadoQueCobro=" + empleadoQueCobro + ", cliente=" + cliente + "]";
+				+ ", formaDePago=" + formaDePago + ", Productos Vendidos : \n" + productosVendidos
+				+ ", empleadoQueAtendio=" + empleadoQueAtendio.getNombre() + ", empleadoQueCobro="
+				+ empleadoQueCobro.getNombre() + ", cliente=" + cliente + "]\n";
+	}
+	
+	public Document toJson() {
+		return new Document("_id", getId())
+				.append("cliente", getCliente().toJson())
+				.append("empleadoQueAtendio", getEmpleadoQueAtendio().toJson())
+				.append("empleadoQueCobro", getEmpleadoQueCobro().toJson())
+//				.append("fecha", getFecha())
+				.append("formaDePago", getFormaDePago().toJson())
+				.append("numeroTicket", this.getNumeroTicket())
+//				.append("productosVendidos", this.getProductosVendidos().iterator().)
+				.append("sucursal", getSucursal().toJson())
+				.append("numeroTicket", this.getNumeroTicket())
+				
+			;
 	}
 
 }

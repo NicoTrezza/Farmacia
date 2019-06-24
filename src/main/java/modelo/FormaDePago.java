@@ -1,5 +1,7 @@
 package modelo;
 
+import org.bson.Document;
+
 public class FormaDePago {
 	
 	private String nombre;
@@ -24,5 +26,9 @@ public class FormaDePago {
 	@Override
 	public String toString() {
 		return "FormaDePago [" + nombre + "]";
+	}
+
+	public Document toJson() {
+		return new Document("nombre", this.getNombre());
 	}
 }

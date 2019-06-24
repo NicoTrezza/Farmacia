@@ -1,5 +1,7 @@
 package modelo;
 
+import org.bson.Document;
+
 public class Domicilio {
 	
 	private String calle;
@@ -55,6 +57,14 @@ public class Domicilio {
 	public String toString() {
 		return "Domicilio [calle=" + calle + ", numero=" + numero + ", localidad=" + localidad + ", provincia="
 				+ provincia + "]";
+	}
+
+	public Document toJson() {
+		return new Document("calle", this.getCalle())
+			.append("localidad", this.getLocalidad())
+			.append("numero", this.getNumero())
+			.append("provincia", this.getProvincia())
+		;
 	}
 	
 }

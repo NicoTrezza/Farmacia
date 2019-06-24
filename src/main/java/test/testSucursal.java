@@ -23,7 +23,7 @@ public class testSucursal {
 		empleados.add(new Empleado("Pablo", "Lopez", 38601565, obraSocial, domicilio, 333));
 		
 		Sucursal sucursal = new Sucursal(encargado, empleados, "0001-00001234", domicilio1);
-		//dbSucursal.insertar(sucursal);
+		dbSucursal.insertar(sucursal);
 		
 		/*try {
 			dbSucursal.actualizar(encargado, empleados, "0001-00001234", domicilio1);

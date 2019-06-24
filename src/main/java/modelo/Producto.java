@@ -1,5 +1,6 @@
 package modelo;
 
+import org.bson.Document;
 import org.bson.types.ObjectId;
 
 public class Producto {
@@ -76,6 +77,16 @@ public class Producto {
 	public String toString() {
 		return "Producto [id=" + id + ", tipo=" + tipo + ", descripcion=" + descripcion + ", laboratorio=" + laboratorio + ", codigo="
 				+ codigo + ", precio=" + precio + "]";
+	}
+	
+	public Document toJson() {
+		return new Document("_id", getId())
+				.append("codigo", getCodigo())
+				.append("descripcion", getDescripcion())
+				.append("laboratorio", getLaboratorio())
+				.append("precio", this.getPrecio())
+				.append("tipo", this.getTipo())
+			;
 	}
 
 }

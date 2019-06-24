@@ -1,12 +1,13 @@
 package modelo;
 
+import org.bson.Document;
+
 public class ObraSocial {
 	
 	private String nombre;
 	private int numeroAfiliado;
 	
 	public ObraSocial() {
-	
 	}
 	
 	public ObraSocial(String nombre, int numeroAfiliado) {
@@ -32,7 +33,19 @@ public class ObraSocial {
 
 	@Override
 	public String toString() {
-		return "ObraSocial [nombre=" + nombre + ", numeroAfiliado=" + numeroAfiliado + "]";
+		return "{ \"nombre\" : " + nombre + ", \"numeroAfiliado\" : " + numeroAfiliado + "}";
+	}
+	
+
+	public boolean equals(int numeroAfiliado) {
+		if (this.getNumeroAfiliado() == numeroAfiliado) return true;
+		return false;
+	}
+
+	public Document toJson() {
+		return new Document("nombre", this.getNombre())
+				.append("numeroAfiliado", this.getNumeroAfiliado())
+			;
 	}
 	
 }

@@ -1,5 +1,6 @@
 package modelo;
 
+import org.bson.Document;
 import org.bson.types.ObjectId;
 
 public class ProductoVendido {
@@ -58,8 +59,17 @@ public class ProductoVendido {
 	
 	@Override
 	public String toString() {
-		return "ProductoVendido [id=" + id + ", producto=" + producto + ", cantidad=" + cantidad + ", subTotalVenta="
-				+ subTotalVenta + "]";
+		return "[ " + producto + ", cantidad=" + cantidad + ", subTotalVenta="
+				+ subTotalVenta + "]\n";
+	}
+	
+	public Document toJson() {
+		Document doc = new Document("_id", getId())
+				.append("cantidad", getCantidad())
+				.append("producto", getProducto().toJson())
+				.append("subTotalVenta", subtotalVenta())
+			;
+		return doc;
 	}
 
 }

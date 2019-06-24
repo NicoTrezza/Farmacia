@@ -10,8 +10,6 @@ import static com.mongodb.client.model.Updates.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.bson.conversions.Bson;
-
 import modelo.FormaDePago;
 
 public class FormaDePagoDB extends Conexion {

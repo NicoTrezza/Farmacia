@@ -1,8 +1,9 @@
 package modelo;
 
+import org.bson.Document;
 import org.bson.types.ObjectId;
 
-public class Persona {
+public abstract class Persona {
 
 	private ObjectId id;
 	private String nombre;
@@ -70,11 +71,15 @@ public class Persona {
 	public void setDomicilio(Domicilio domicilio) {
 		this.domicilio = domicilio;
 	}
-
+	
+	public abstract Document toJson();
+	
 	@Override
 	public String toString() {
 		return "Persona [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", dni=" + dni + ", obraSocial="
 				+ obraSocial + ", domicilio=" + domicilio + "]";
 	}
+
+	
 	
 }
