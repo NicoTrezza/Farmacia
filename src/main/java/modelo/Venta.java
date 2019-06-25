@@ -131,7 +131,7 @@ public class Venta {
 		return "Venta [id=" + id + ", fecha=" + fecha + ", numeroTicket=" + numeroTicket + ", totalVenta=" + totalVenta
 				+ ", formaDePago=" + formaDePago + ", Productos Vendidos : \n" + productosVendidos
 				+ ", empleadoQueAtendio=" + empleadoQueAtendio.getNombre() + ", empleadoQueCobro="
-				+ empleadoQueCobro.getNombre() + ", cliente=" + cliente + "]\n";
+				+ empleadoQueCobro.getNombre() + ", cliente=" + cliente + ", sucursal: "+getSucursal()+"]\n";
 	}
 	
 	public Document toJson() {

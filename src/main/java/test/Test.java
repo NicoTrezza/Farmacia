@@ -17,7 +17,6 @@ import modelo.Cliente;
 import modelo.Domicilio;
 import modelo.Empleado;
 import modelo.FormaDePago;
-import modelo.Persona;
 import modelo.Producto;
 import modelo.ProductoVendido;
 import modelo.Sucursal;
@@ -49,11 +48,11 @@ public class Test {
 		// Cliente
 		EmpleadoDB dbEmpleado = new EmpleadoDB();
 		
-		dbEmpleado.insertar(new Empleado("Lionel", "Messi", 98765412, new ObraSocial("Galeno", 333), new Domicilio("San Martin", 11, "Avellaneda", "Buenos Aires"), 20987654120L));
-		dbEmpleado.insertar(new Empleado("Gonzalo", "Banzas", 65498722, null, new Domicilio("Martinez", 666, "Belgrano", "Buenos Aires"), 20654987220L));
-		dbEmpleado.insertar(new Empleado("Victor", "Ibañez", 36068006, new ObraSocial("IOMA", 666), new Domicilio("Calle 832", 2070, "Quilmes", "Buenos Aires"), 111));
-		dbEmpleado.insertar(new Empleado("Nico", "Trezza", 12345678, new ObraSocial("IOMA", 667), new Domicilio("Calle A", 777, "Turdela", "Buenos Aires"), 222));
-		dbEmpleado.insertar(new Empleado("Pablo", "Lopez", 38601565, new ObraSocial("IOMA", 668), new Domicilio("Calle B", 2200, "Temperley", "Buenos Aires"), 333));
+		dbEmpleado.insertar(new Empleado("Lionel", "Messi", 12345680, new ObraSocial("Galeno", 333), new Domicilio("San Martin", 11, "Avellaneda", "Buenos Aires"), 555l));
+		dbEmpleado.insertar(new Empleado("José", "Lucero", 12345679, null, new Domicilio("Martinez", 666, "Belgrano", "Buenos Aires"), 444l));
+		dbEmpleado.insertar(new Empleado("Victor", "Ibañez", 36068006, new ObraSocial("IOMA", 666), new Domicilio("Calle 832", 2070, "Quilmes", "Buenos Aires"), 333l));
+		dbEmpleado.insertar(new Empleado("Nico", "Trezza", 12345678, new ObraSocial("IOMA", 667), new Domicilio("Calle A", 777, "Turdela", "Buenos Aires"), 222l));
+		dbEmpleado.insertar(new Empleado("Pablo", "Lopez", 38601565, new ObraSocial("IOMA", 668), new Domicilio("Calle B", 2200, "Temperley", "Buenos Aires"), 111l));
 		
 		for (Empleado persona : dbEmpleado.encontrar()) {
 			System.out.println("Empleado : "+persona.toJson().toJson(new JsonWriterSettings(JsonMode.SHELL)));
@@ -66,11 +65,16 @@ public class Test {
 		try {
 			Empleado encargado = dbEmpleado.encontrar(111l);
 			List<Empleado> empleados = new ArrayList<Empleado>();
+			
 			empleados.add(dbEmpleado.encontrar(222l));
 			empleados.add(dbEmpleado.encontrar(333l));
-			
 			dbSucursal.insertar(new Sucursal(encargado, empleados, "0001-00001234", new Domicilio("Calle B", 2200, "Temperley", "Buenos Aires")));
+			empleados.clear();
+			empleados.add(dbEmpleado.encontrar(555l));
 			dbSucursal.insertar(new Sucursal(encargado, empleados, "0002-00001234", new Domicilio("Calle B", 2200, "Temperley", "Buenos Aires")));
+			empleados.clear();
+			empleados.add(dbEmpleado.encontrar(444l));
+			empleados.add(dbEmpleado.encontrar(111l));
 			dbSucursal.insertar(new Sucursal(encargado, empleados, "0003-00001234", new Domicilio("Calle B", 2200, "Temperley", "Buenos Aires")));
 		
 		} catch (Exception e) {
@@ -86,17 +90,17 @@ public class Test {
 		// Productos
 		ProductoDB dbprod = new ProductoDB();
 		
-		dbprod.insertar(new Producto("Medicamento", "Ronyol", "Baliarda", 10001, 20));
-		dbprod.insertar(new Producto("Medicamento", "Clonagin", "INVESTI", 10006, 180));
-		dbprod.insertar(new Producto("Medicamento", "Biperineto", "Bagó", 10011, 400));
-		dbprod.insertar(new Producto("Medicamento", "Aspirina", "BAYER", 10018, 59));
-		dbprod.insertar(new Producto("Medicamento", "Levo-tiroxina", "GSK", 10019, 100));
-		dbprod.insertar(new Producto("Medicamento", "semanar 160", "MA", 10022, 450));
-		dbprod.insertar(new Producto("Medicamento", "semanar 80", "MA", 10028, 300));
-		dbprod.insertar(new Producto("Medicamento", "Halopidol Decanoato", "DF", 10101, 765));
-		dbprod.insertar(new Producto("Perfumería", "Enjuague Bucal", "Colgato", 20022, 95));
-		dbprod.insertar(new Producto("Perfumería", "Desodorante aerosol Evolution", "ST", 20028, 45));
-		dbprod.insertar(new Producto("Perfumería", "Talco", "Rexona", 20101, 50));
+		dbprod.insertar(new Producto("Medicamento", "Remedio1", "BL", 1001, 20));
+		dbprod.insertar(new Producto("Medicamento", "Remedio2", "IN", 1002, 180));
+		dbprod.insertar(new Producto("Medicamento", "Remedio3", "BÓ", 1003, 400));
+		dbprod.insertar(new Producto("Medicamento", "Aspirina1", "BY", 2001, 59));
+		dbprod.insertar(new Producto("Medicamento", "Aspirina2", "GSK", 2002, 100));
+		dbprod.insertar(new Producto("Medicamento", "Aspirina3", "MA", 2003, 450));
+		dbprod.insertar(new Producto("Medicamento", "Aspirina4", "MA", 2004, 300));
+		dbprod.insertar(new Producto("Medicamento", "Aspirina5", "DF", 2005, 765));
+		dbprod.insertar(new Producto("Perfumería", "EnjuagueA", "CG", 30001, 95));
+		dbprod.insertar(new Producto("Perfumería", "DesodoranteA", "ST", 30002, 45));
+		dbprod.insertar(new Producto("Perfumería", "TalcoA", "RX", 30003, 50));
 		
 		for (Producto producto : dbprod.encontrar()) {
 			System.out.println("Productos : "+producto.toJson().toJson(new JsonWriterSettings(JsonMode.SHELL)));
@@ -116,13 +120,379 @@ public class Test {
 
 		// Ventas
 		VentaDB dbV = new VentaDB();
+		
 		try {
 			FormaDePagoDB dbF = new FormaDePagoDB();
 			ProductoDB dbP = new ProductoDB();
-			List<ProductoVendido> lstProductos = new ArrayList<ProductoVendido>();
-			lstProductos.add(new ProductoVendido(dbP.encontrar(20022),3));
-			lstProductos.add(new ProductoVendido(dbP.encontrar(20028),1));
-			dbV.insertar(new Venta(LocalDate.now(), 1, dbF.encontrar("Efectivo"), lstProductos, dbEmpleado.encontrar(20987654120L), dbEmpleado.encontrar(20654987220L), dbCliente.encontrar(12345687), dbSucursal.encontrar("0001-00001234")));
+			// Sucursal 0001
+			// empleados 222l, 333l
+				//-----Mes 1------//
+				//1.cliente Benitez
+				List<ProductoVendido> lstProductos = new ArrayList<ProductoVendido>();
+				lstProductos.add(new ProductoVendido(dbP.encontrar(30001),3));
+				lstProductos.add(new ProductoVendido(dbP.encontrar(30002),1));
+				dbV.insertar(new Venta(
+						LocalDate.of(2019, 1, 1), 10, dbF.encontrar("Efectivo"),
+						lstProductos,
+						dbSucursal.encontrar("0001",222L),
+						dbSucursal.encontrar("0001",333L),
+						dbCliente.encontrar(12345687),
+						dbSucursal.encontrar("0001")));
+				lstProductos.clear();
+				//2.cliente Benitez
+				lstProductos.add(new ProductoVendido(dbP.encontrar(30001),3));
+				lstProductos.add(new ProductoVendido(dbP.encontrar(30002),2));
+				lstProductos.add(new ProductoVendido(dbP.encontrar(30003),5));
+				dbV.insertar(new Venta(
+						LocalDate.of(2019, 1, 2), 11, dbF.encontrar("Efectivo"),
+						lstProductos,
+						dbSucursal.encontrar("0001",222L),
+						dbSucursal.encontrar("0001",333L),
+						dbCliente.encontrar(12345687),
+						dbSucursal.encontrar("0001")));
+				lstProductos.clear();
+				//3.cliente Andres
+				lstProductos.add(new ProductoVendido(dbP.encontrar(1001),1));
+				lstProductos.add(new ProductoVendido(dbP.encontrar(1002),1));
+				lstProductos.add(new ProductoVendido(dbP.encontrar(1003),1));
+				dbV.insertar(new Venta(
+						LocalDate.of(2019, 1, 2), 13, dbF.encontrar("Tarjeta crédito"),
+						lstProductos,
+						dbSucursal.encontrar("0001",222L),
+						dbSucursal.encontrar("0001",333L),
+						dbCliente.encontrar(32165498),
+						dbSucursal.encontrar("0001")));
+				lstProductos.clear();
+				//4.cliente Andres
+				lstProductos.add(new ProductoVendido(dbP.encontrar(2005),2));
+				lstProductos.add(new ProductoVendido(dbP.encontrar(2004),3));
+				dbV.insertar(new Venta(
+						LocalDate.of(2019, 1, 5), 14, dbF.encontrar("Tarjeta crédito"),
+						lstProductos,
+						dbSucursal.encontrar("0001",222L),
+						dbSucursal.encontrar("0001",333L),
+						dbCliente.encontrar(32165498),
+						dbSucursal.encontrar("0001")));
+				lstProductos.clear();
+				//5.cliente Marcos
+				lstProductos.add(new ProductoVendido(dbP.encontrar(2005),5));
+				lstProductos.add(new ProductoVendido(dbP.encontrar(2004),5));
+				dbV.insertar(new Venta(
+						LocalDate.of(2019, 1, 15), 15, dbF.encontrar("Tarjeta débito"),
+						lstProductos,
+						dbSucursal.encontrar("0001",222L),
+						dbSucursal.encontrar("0001",333L),
+						dbCliente.encontrar(12345687),
+						dbSucursal.encontrar("0001")));
+				lstProductos.clear();
+				//6.cliente Marcos
+				lstProductos.add(new ProductoVendido(dbP.encontrar(2005),5));
+				lstProductos.add(new ProductoVendido(dbP.encontrar(2004),5));
+				lstProductos.add(new ProductoVendido(dbP.encontrar(2002),5));
+				lstProductos.add(new ProductoVendido(dbP.encontrar(30001),5));
+				dbV.insertar(new Venta(
+						LocalDate.of(2019, 1, 30), 16, dbF.encontrar("Tarjeta débito"),
+						lstProductos,
+						dbSucursal.encontrar("0001",222L),
+						dbSucursal.encontrar("0001",333L),
+						dbCliente.encontrar(12345687),
+						dbSucursal.encontrar("0001")));
+				lstProductos.clear();
+				//-----Mes 2------//
+				//7.cliente Andres
+				lstProductos.add(new ProductoVendido(dbP.encontrar(1001),1));
+				lstProductos.add(new ProductoVendido(dbP.encontrar(1002),1));
+				lstProductos.add(new ProductoVendido(dbP.encontrar(1003),1));
+				lstProductos.add(new ProductoVendido(dbP.encontrar(2005),2));
+				lstProductos.add(new ProductoVendido(dbP.encontrar(2004),3));
+				dbV.insertar(new Venta(
+						LocalDate.of(2019, 2, 5), 21, dbF.encontrar("Tarjeta crédito"),
+						lstProductos,
+						dbSucursal.encontrar("0001",222L),
+						dbSucursal.encontrar("0001",333L),
+						dbCliente.encontrar(32165498),
+						dbSucursal.encontrar("0001")));
+				lstProductos.clear();
+				//8.cliente Marcos
+				lstProductos.add(new ProductoVendido(dbP.encontrar(30001),1));
+				lstProductos.add(new ProductoVendido(dbP.encontrar(30002),1));
+				lstProductos.add(new ProductoVendido(dbP.encontrar(30003),1));
+				dbV.insertar(new Venta(
+						LocalDate.of(2019, 2, 10), 22, dbF.encontrar("Efectivo"),
+						lstProductos,
+						dbSucursal.encontrar("0001",222L),
+						dbSucursal.encontrar("0001",333L),
+						dbCliente.encontrar(12345687),
+						dbSucursal.encontrar("0001")));
+				lstProductos.clear();
+				//9.cliente Benitez
+				lstProductos.add(new ProductoVendido(dbP.encontrar(1001),1));
+				lstProductos.add(new ProductoVendido(dbP.encontrar(1002),2));
+				lstProductos.add(new ProductoVendido(dbP.encontrar(1003),1));
+				dbV.insertar(new Venta(
+						LocalDate.of(2019, 2, 11), 23, dbF.encontrar("Efectivo"),
+						lstProductos,
+						dbSucursal.encontrar("0001",222L),
+						dbSucursal.encontrar("0001",333L),
+						dbCliente.encontrar(12345687),
+						dbSucursal.encontrar("0001")));
+				lstProductos.clear();
+				//10.cliente Marcos
+				lstProductos.add(new ProductoVendido(dbP.encontrar(30001),1));
+				lstProductos.add(new ProductoVendido(dbP.encontrar(30002),1));
+				lstProductos.add(new ProductoVendido(dbP.encontrar(30003),2));
+				dbV.insertar(new Venta(
+						LocalDate.of(2019, 2, 12), 24, dbF.encontrar("Efectivo"),
+						lstProductos,
+						dbSucursal.encontrar("0001",222L),
+						dbSucursal.encontrar("0001",333L),
+						dbCliente.encontrar(12345687),
+						dbSucursal.encontrar("0001")));
+				lstProductos.clear();
+				//11.cliente Andres
+				lstProductos.add(new ProductoVendido(dbP.encontrar(1001),1));
+				lstProductos.add(new ProductoVendido(dbP.encontrar(1002),1));
+				lstProductos.add(new ProductoVendido(dbP.encontrar(1003),1));
+				lstProductos.add(new ProductoVendido(dbP.encontrar(2001),1));
+				lstProductos.add(new ProductoVendido(dbP.encontrar(2002),1));
+				lstProductos.add(new ProductoVendido(dbP.encontrar(2003),1));
+				lstProductos.add(new ProductoVendido(dbP.encontrar(2004),2));
+				lstProductos.add(new ProductoVendido(dbP.encontrar(2005),3));
+				dbV.insertar(new Venta(
+						LocalDate.of(2019, 2, 14), 25, dbF.encontrar("Tarjeta crédito"),
+						lstProductos,
+						dbSucursal.encontrar("0001",222L),
+						dbSucursal.encontrar("0001",333L),
+						dbCliente.encontrar(32165498),
+						dbSucursal.encontrar("0001")));
+				lstProductos.clear();
+				//12.cliente Andres
+				lstProductos.add(new ProductoVendido(dbP.encontrar(2005),1));
+				lstProductos.add(new ProductoVendido(dbP.encontrar(2004),1));
+				dbV.insertar(new Venta(
+						LocalDate.of(2019, 2, 28), 26, dbF.encontrar("Tarjeta crédito"),
+						lstProductos,
+						dbSucursal.encontrar("0001",222L),
+						dbSucursal.encontrar("0001",333L),
+						dbCliente.encontrar(32165498),
+						dbSucursal.encontrar("0001")));
+				lstProductos.clear();
+				//------Mes 3-----//
+				//13.cliente Marcos
+				lstProductos.add(new ProductoVendido(dbP.encontrar(1001),1));
+				dbV.insertar(new Venta(
+						LocalDate.of(2019, 3, 3), 31, dbF.encontrar("Tarjeta débito"),
+						lstProductos,
+						dbSucursal.encontrar("0001",222L),
+						dbSucursal.encontrar("0001",333L),
+						dbCliente.encontrar(12345687),
+						dbSucursal.encontrar("0001")));
+				lstProductos.clear();
+				//14.cliente Benitez
+				lstProductos.add(new ProductoVendido(dbP.encontrar(30001),2));
+				lstProductos.add(new ProductoVendido(dbP.encontrar(30002),2));
+				lstProductos.add(new ProductoVendido(dbP.encontrar(30003),4));
+				dbV.insertar(new Venta(
+						LocalDate.of(2019, 3, 3), 32, dbF.encontrar("Efectivo"),
+						lstProductos,
+						dbSucursal.encontrar("0001",222L),
+						dbSucursal.encontrar("0001",333L),
+						dbCliente.encontrar(12345687),
+						dbSucursal.encontrar("0001")));
+				lstProductos.clear();
+				//15.cliente Benitez
+				lstProductos.add(new ProductoVendido(dbP.encontrar(1001),1));
+				lstProductos.add(new ProductoVendido(dbP.encontrar(1002),2));
+				lstProductos.add(new ProductoVendido(dbP.encontrar(1003),1));
+				dbV.insertar(new Venta(
+						LocalDate.of(2019, 3, 4), 33, dbF.encontrar("Efectivo"),
+						lstProductos,
+						dbSucursal.encontrar("0001",222L),
+						dbSucursal.encontrar("0001",333L),
+						dbCliente.encontrar(12345687),
+						dbSucursal.encontrar("0001")));
+				lstProductos.clear();
+				//16.cliente Marcos
+				lstProductos.add(new ProductoVendido(dbP.encontrar(1001),1));
+				dbV.insertar(new Venta(
+						LocalDate.of(2019, 3, 4), 34, dbF.encontrar("Tarjeta débito"),
+						lstProductos,
+						dbSucursal.encontrar("0001",222L),
+						dbSucursal.encontrar("0001",333L),
+						dbCliente.encontrar(12345687),
+						dbSucursal.encontrar("0001")));
+				lstProductos.clear();
+				//17.cliente Andres
+				lstProductos.add(new ProductoVendido(dbP.encontrar(1001),1));
+				lstProductos.add(new ProductoVendido(dbP.encontrar(1002),1));
+				lstProductos.add(new ProductoVendido(dbP.encontrar(1003),2));
+				lstProductos.add(new ProductoVendido(dbP.encontrar(2005),2));
+				lstProductos.add(new ProductoVendido(dbP.encontrar(2004),3));
+				dbV.insertar(new Venta(
+						LocalDate.of(2019, 3, 5), 35, dbF.encontrar("Tarjeta crédito"),
+						lstProductos,
+						dbSucursal.encontrar("0001",222L),
+						dbSucursal.encontrar("0001",333L),
+						dbCliente.encontrar(32165498),
+						dbSucursal.encontrar("0001")));
+				lstProductos.clear();
+				//18.cliente Marcos
+				lstProductos.add(new ProductoVendido(dbP.encontrar(30001),1));
+				lstProductos.add(new ProductoVendido(dbP.encontrar(30002),1));
+				dbV.insertar(new Venta(
+						LocalDate.of(2019, 3, 10), 36, dbF.encontrar("Efectivo"),
+						lstProductos,
+						dbSucursal.encontrar("0001",222L),
+						dbSucursal.encontrar("0001",333L),
+						dbCliente.encontrar(12345687),
+						dbSucursal.encontrar("0001")));
+				lstProductos.clear();
+				//19.cliente Benitez
+				lstProductos.add(new ProductoVendido(dbP.encontrar(1001),1));
+				lstProductos.add(new ProductoVendido(dbP.encontrar(1002),1));
+				lstProductos.add(new ProductoVendido(dbP.encontrar(1003),1));
+				dbV.insertar(new Venta(
+						LocalDate.of(2019, 3, 11), 37, dbF.encontrar("Efectivo"),
+						lstProductos,
+						dbSucursal.encontrar("0001",222L),
+						dbSucursal.encontrar("0001",333L),
+						dbCliente.encontrar(12345687),
+						dbSucursal.encontrar("0001")));
+				lstProductos.clear();
+				//20.cliente Marcos
+				lstProductos.add(new ProductoVendido(dbP.encontrar(30001),1));
+				lstProductos.add(new ProductoVendido(dbP.encontrar(30002),1));
+				lstProductos.add(new ProductoVendido(dbP.encontrar(30003),2));
+				dbV.insertar(new Venta(
+						LocalDate.of(2019, 3, 12), 38, dbF.encontrar("Efectivo"),
+						lstProductos,
+						dbSucursal.encontrar("0001",222L),
+						dbSucursal.encontrar("0001",333L),
+						dbCliente.encontrar(12345687),
+						dbSucursal.encontrar("0001")));
+				lstProductos.clear();
+				//21.cliente Andres
+				lstProductos.add(new ProductoVendido(dbP.encontrar(1001),1));
+				lstProductos.add(new ProductoVendido(dbP.encontrar(1002),1));
+				lstProductos.add(new ProductoVendido(dbP.encontrar(1003),1));
+				lstProductos.add(new ProductoVendido(dbP.encontrar(2001),1));
+				lstProductos.add(new ProductoVendido(dbP.encontrar(2002),1));
+				lstProductos.add(new ProductoVendido(dbP.encontrar(2003),1));
+				lstProductos.add(new ProductoVendido(dbP.encontrar(2004),2));
+				lstProductos.add(new ProductoVendido(dbP.encontrar(2005),3));
+				dbV.insertar(new Venta(
+						LocalDate.of(2019, 3, 14), 39, dbF.encontrar("Tarjeta crédito"),
+						lstProductos,
+						dbSucursal.encontrar("0001",222L),
+						dbSucursal.encontrar("0001",333L),
+						dbCliente.encontrar(32165498),
+						dbSucursal.encontrar("0001")));
+				lstProductos.clear();
+				//22.cliente Andres
+				lstProductos.add(new ProductoVendido(dbP.encontrar(2005),1));
+				lstProductos.add(new ProductoVendido(dbP.encontrar(2004),1));
+				dbV.insertar(new Venta(
+						LocalDate.of(2019, 3, 29), 40, dbF.encontrar("Tarjeta crédito"),
+						lstProductos,
+						dbSucursal.encontrar("0001",222L),
+						dbSucursal.encontrar("0001",333L),
+						dbCliente.encontrar(32165498),
+						dbSucursal.encontrar("0001")));
+				lstProductos.clear();
+				//23.cliente Marcos
+				lstProductos.add(new ProductoVendido(dbP.encontrar(30001),10));
+				dbV.insertar(new Venta(
+						LocalDate.of(2019, 3, 30), 39, dbF.encontrar("Efectivo"),
+						lstProductos,
+						dbSucursal.encontrar("0001",222L),
+						dbSucursal.encontrar("0001",333L),
+						dbCliente.encontrar(12345687),
+						dbSucursal.encontrar("0001")));
+				lstProductos.clear();
+				//24.cliente Benitez
+				lstProductos.add(new ProductoVendido(dbP.encontrar(1001),1));
+				lstProductos.add(new ProductoVendido(dbP.encontrar(1002),1));
+				dbV.insertar(new Venta(
+						LocalDate.of(2019, 3, 30), 40, dbF.encontrar("Efectivo"),
+						lstProductos,
+						dbSucursal.encontrar("0001",222L),
+						dbSucursal.encontrar("0001",333L),
+						dbCliente.encontrar(12345687),
+						dbSucursal.encontrar("0001")));
+				lstProductos.clear();
+				//-----Mes 4------//
+				//25.cliente Marcos
+				lstProductos.add(new ProductoVendido(dbP.encontrar(1001),1));
+				dbV.insertar(new Venta(
+						LocalDate.of(2019, 4, 3), 41, dbF.encontrar("Tarjeta débito"),
+						lstProductos,
+						dbSucursal.encontrar("0001",222L),
+						dbSucursal.encontrar("0001",333L),
+						dbCliente.encontrar(12345687),
+						dbSucursal.encontrar("0001")));
+				lstProductos.clear();
+				//26.cliente Benitez
+				lstProductos.add(new ProductoVendido(dbP.encontrar(30001),2));
+				lstProductos.add(new ProductoVendido(dbP.encontrar(30002),2));
+				lstProductos.add(new ProductoVendido(dbP.encontrar(30003),4));
+				dbV.insertar(new Venta(
+						LocalDate.of(2019, 4, 3), 42, dbF.encontrar("Efectivo"),
+						lstProductos,
+						dbSucursal.encontrar("0001",222L),
+						dbSucursal.encontrar("0001",333L),
+						dbCliente.encontrar(12345687),
+						dbSucursal.encontrar("0001")));
+				lstProductos.clear();
+				//27.cliente Benitez
+				lstProductos.add(new ProductoVendido(dbP.encontrar(1001),1));
+				lstProductos.add(new ProductoVendido(dbP.encontrar(1002),2));
+				lstProductos.add(new ProductoVendido(dbP.encontrar(1003),1));
+				dbV.insertar(new Venta(
+						LocalDate.of(2019, 4, 4), 43, dbF.encontrar("Efectivo"),
+						lstProductos,
+						dbSucursal.encontrar("0001",222L),
+						dbSucursal.encontrar("0001",333L),
+						dbCliente.encontrar(12345687),
+						dbSucursal.encontrar("0001")));
+				lstProductos.clear();
+				//28.cliente Marcos
+				lstProductos.add(new ProductoVendido(dbP.encontrar(1001),1));
+				dbV.insertar(new Venta(
+						LocalDate.of(2019, 4, 4), 44, dbF.encontrar("Tarjeta débito"),
+						lstProductos,
+						dbSucursal.encontrar("0001",222L),
+						dbSucursal.encontrar("0001",333L),
+						dbCliente.encontrar(12345687),
+						dbSucursal.encontrar("0001")));
+				lstProductos.clear();
+				//29.cliente Andres
+				lstProductos.add(new ProductoVendido(dbP.encontrar(1001),1));
+				lstProductos.add(new ProductoVendido(dbP.encontrar(1002),1));
+				lstProductos.add(new ProductoVendido(dbP.encontrar(1003),2));
+				lstProductos.add(new ProductoVendido(dbP.encontrar(2005),2));
+				lstProductos.add(new ProductoVendido(dbP.encontrar(2004),3));
+				dbV.insertar(new Venta(
+						LocalDate.of(2019, 4, 6), 45, dbF.encontrar("Tarjeta crédito"),
+						lstProductos,
+						dbSucursal.encontrar("0001",222L),
+						dbSucursal.encontrar("0001",333L),
+						dbCliente.encontrar(32165498),
+						dbSucursal.encontrar("0001")));
+				lstProductos.clear();
+				//30.cliente Marcos
+				lstProductos.add(new ProductoVendido(dbP.encontrar(30001),1));
+				lstProductos.add(new ProductoVendido(dbP.encontrar(30002),1));
+				dbV.insertar(new Venta(
+						LocalDate.of(2019, 4, 11), 46, dbF.encontrar("Efectivo"),
+						lstProductos,
+						dbSucursal.encontrar("0001",222L),
+						dbSucursal.encontrar("0001",333L),
+						dbCliente.encontrar(12345687),
+						dbSucursal.encontrar("0001")));
+				lstProductos.clear();
+				
+				
+				
 		} catch (Exception e) {
 			System.out.println(e);
 		}

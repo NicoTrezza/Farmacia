@@ -5,6 +5,7 @@ import com.mongodb.client.result.DeleteResult;
 import com.mongodb.client.result.UpdateResult;
 import org.bson.Document;
 
+import static com.mongodb.client.model.Filters.eq;
 import static com.mongodb.client.model.Updates.combine;
 import static com.mongodb.client.model.Updates.set;
 
@@ -14,6 +15,7 @@ import java.util.regex.Pattern;
 
 import modelo.Domicilio;
 import modelo.Empleado;
+import modelo.ProductoVendido;
 import modelo.Sucursal;
 
 public class SucursalDB extends Conexion{
@@ -35,6 +37,16 @@ public class SucursalDB extends Conexion{
 			lista.add(sucursal);
 		}
 		return lista;
+	}
+	
+	public Empleado encontrar(String ticketFiscal,long CUIL) throws Exception {
+		Empleado empleadoAux = null;
+
+		for (Empleado empleado : this.encontrar(ticketFiscal).getEmpleados()) {
+			if(empleado.getCuil()==CUIL)empleadoAux=empleado;
+		}
+		
+		return empleadoAux;
 	}
 	
 	public Sucursal encontrar(String ticketFiscal) {

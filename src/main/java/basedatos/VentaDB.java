@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
 
+import org.bson.Document;
+
 import com.mongodb.client.MongoCollection;
 import static com.mongodb.client.model.Filters.eq;
 import static com.mongodb.client.model.Filters.and;
@@ -60,10 +62,10 @@ public class VentaDB extends Conexion {
 		return lista;
 	}
 	
-	public List<Venta> consulta1(LocalDate fechaInicio,LocalDate fechaFin){
+	public List<Venta> consulta1(LocalDate fechaInicio, LocalDate fechaFin, Sucursal sucursal) {
 		List<Venta> lstVentas = new ArrayList<Venta>();
-		Document query= new Document();
-		query.append("fecha",new Document().append("$lte",fechaFin).append("$gte",fechaInicio));
+		Document query = new Document();
+		query.append("fecha", new Document().append("$lte", fechaFin).append("$gte",fechaInicio)).append("sucursal.ticketFiscal", sucursal.getTicketFiscal());
 		for (Venta venta : this.coleccion.find(query)) {
 			lstVentas.add(venta);
 		}
