@@ -19,8 +19,6 @@ import modelo.Producto;
 
 import modelo.Sucursal;
 import modelo.Venta;
-import negocio.SucursalABM;
-import negocio.VentaABM;
 
 public class TestTraer {
 
@@ -29,12 +27,12 @@ public class TestTraer {
 
 		ClienteDB dbCliente = new ClienteDB();
 		EmpleadoDB dbEmpleado = new EmpleadoDB();
-		
-		
+
 		SucursalDB dbSucursal = new SucursalDB();
 		ProductoDB dbprod = new ProductoDB();
 		FormaDePagoDB dbFormaDePAgo = new FormaDePagoDB();
-
+		VentaDB dbV = new VentaDB();
+		
 
 		// Cliente
 		for (Cliente persona : dbCliente.encontrar()) {
@@ -67,16 +65,15 @@ public class TestTraer {
 		}
 		
 		
-		VentaDB dbV = new VentaDB();
 		
 		//test 1
 		int total = 0;
 		System.out.println("Venta :");
-		for (Venta venta : dbV.consulta1(LocalDate.of(2019, 1, 1),LocalDate.of(2019, 3, 30),SucursalABM.getInstance().encontrar("0001"))) {
+		for (Venta venta : dbV.consulta1(LocalDate.of(2019, 1, 1),LocalDate.of(2019, 3, 30),dbSucursal.encontrar("0001"))) {
 			System.out.println(venta.toJson().toJson(new JsonWriterSettings(JsonMode.SHELL)));
 			total += 1;
 		}
-		System.out.println("total: "+total+" ventas de la sucursal: "+SucursalABM.getInstance().encontrar("0001").getTicketFiscal()+", Fechas entre "+LocalDate.of(2019, 1, 1).toString()+" y "+LocalDate.of(2019, 3, 30).toString());
+		System.out.println("total: "+total+" ventas de la sucursal: "+dbSucursal.encontrar("0001").getTicketFiscal()+", Fechas entre "+LocalDate.of(2019, 1, 1).toString()+" y "+LocalDate.of(2019, 3, 30).toString());
 		
 		//test 2
 		
