@@ -90,17 +90,17 @@ public class TestAlta {
 		// Productos
 		ProductoDB dbprod = new ProductoDB();
 		
-		dbprod.insertar(new Producto("Medicamento", "Remedio1", "BL", 1001, 20));
-		dbprod.insertar(new Producto("Medicamento", "Remedio2", "IN", 1002, 180));
-		dbprod.insertar(new Producto("Medicamento", "Remedio3", "BÓ", 1003, 400));
-		dbprod.insertar(new Producto("Medicamento", "Aspirina1", "BY", 2001, 59));
-		dbprod.insertar(new Producto("Medicamento", "Aspirina2", "GSK", 2002, 100));
-		dbprod.insertar(new Producto("Medicamento", "Aspirina3", "MA", 2003, 450));
-		dbprod.insertar(new Producto("Medicamento", "Aspirina4", "MA", 2004, 300));
-		dbprod.insertar(new Producto("Medicamento", "Aspirina5", "DF", 2005, 765));
-		dbprod.insertar(new Producto("Perfumería", "EnjuagueA", "CG", 30001, 95));
-		dbprod.insertar(new Producto("Perfumería", "DesodoranteA", "ST", 30002, 45));
-		dbprod.insertar(new Producto("Perfumería", "TalcoA", "RX", 30003, 50));
+		dbprod.insertar(new Producto("farmacia", "Remedio1", "BL", 1001, 20));
+		dbprod.insertar(new Producto("farmacia", "Remedio2", "IN", 1002, 180));
+		dbprod.insertar(new Producto("farmacia", "Remedio3", "BÓ", 1003, 400));
+		dbprod.insertar(new Producto("farmacia", "Aspirina1", "BY", 2001, 59));
+		dbprod.insertar(new Producto("farmacia", "Aspirina2", "GSK", 2002, 100));
+		dbprod.insertar(new Producto("farmacia", "Aspirina3", "MA", 2003, 450));
+		dbprod.insertar(new Producto("farmacia", "Aspirina4", "MA", 2004, 300));
+		dbprod.insertar(new Producto("farmacia", "Aspirina5", "DF", 2005, 765));
+		dbprod.insertar(new Producto("perfumería", "EnjuagueA", "CG", 30001, 95));
+		dbprod.insertar(new Producto("perfumería", "DesodoranteA", "ST", 30002, 45));
+		dbprod.insertar(new Producto("perfumería", "TalcoA", "RX", 30003, 50));
 		
 		for (Producto producto : dbprod.encontrar()) {
 //			System.out.println("Productos : "+producto.toJson().toJson(new JsonWriterSettings(JsonMode.SHELL)));
