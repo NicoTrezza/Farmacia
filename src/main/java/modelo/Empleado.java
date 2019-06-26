@@ -38,6 +38,8 @@ public class Empleado extends Persona {
 			;
 		if (this.getObraSocial() != null) {
 			doc.append("obraSocial", this.getObraSocial().toJson());
+		} else {
+			doc.append("obraSocial", null);
 		}
 		return doc;
 	}

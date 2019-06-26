@@ -18,13 +18,18 @@ public class Cliente extends Persona {
 	}
 
 	public Document toJson() {
-		return new Document("_id", getId())
+		Document doc = new Document("_id", getId())
 				.append("apellido", getApellido())
 				.append("dni", getDni())
 				.append("domicilio", this.getDomicilio().toJson())
 				.append("nombre", this.getNombre())
-				.append("obraSocial", this.getObraSocial().toJson())
 			;
+		if (this.getObraSocial() != null) {
+			doc.append("obraSocial", this.getObraSocial().toJson());
+		}else {
+			doc.append("obraSocial",null);
+		}
+		return doc;
 	}
 	
 }

@@ -32,11 +32,11 @@ public class TestAlta {
 		
 		dbCliente.insertar(new Cliente("Juan", "Benitez", 12345687, new ObraSocial("Osecac", 122), new Domicilio("San aguston", 141, "San Nicolas", "Buenos Aires")));
 		dbCliente.insertar(new Cliente("Norma", "Andres", 32165498, new ObraSocial("Pami", 222), new Domicilio("Gral Belgrano", 122, "Lanus", "Buenos Aires")));
-		dbCliente.insertar(new Cliente("Marcos", "Ibañez", 12345687, new ObraSocial("Osecac", 123), new Domicilio("San aguston", 133, "San Nicolas", "Buenos Aires")));
+		dbCliente.insertar(new Cliente("Marcos", "Ibañez", 12345111, null, new Domicilio("San aguston", 133, "San Nicolas", "Buenos Aires")));
 		dbCliente.insertar(new Cliente("Damian", "Santi", 32165498, new ObraSocial("Pami", 223), new Domicilio("Gral Belgrano", 144, "Lanus", "Buenos Aires")));
 		dbCliente.insertar(new Cliente("Martín", "Olmos", 12345687, new ObraSocial("Osecac", 124), new Domicilio("San aguston", 155, "San Nicolas", "Buenos Aires")));
 		dbCliente.insertar(new Cliente("Nehuén", "Vaez", 32165498, new ObraSocial("Pami", 224), new Domicilio("Gral Belgrano", 166, "Lanus", "Buenos Aires")));
-		dbCliente.insertar(new Cliente("Joaquin", "Aguilar", 12345687, new ObraSocial("Osecac", 125), new Domicilio("San aguston", 177, "San Nicolas", "Buenos Aires")));
+		dbCliente.insertar(new Cliente("Joaquin", "Aguilar", 12345687, null, new Domicilio("San aguston", 177, "San Nicolas", "Buenos Aires")));
 		dbCliente.insertar(new Cliente("Florencia", "Gutierrez", 32165499, new ObraSocial("Pami", 225), new Domicilio("Gral Belgrano", 188, "Lanus", "Buenos Aires")));
 		dbCliente.insertar(new Cliente("Cristina", "Samaniego", 12345689, new ObraSocial("Osecac", 126), new Domicilio("San aguston", 199, "San Nicolas", "Buenos Aires")));
 		dbCliente.insertar(new Cliente("Analia", "Quiroga", 32165491, new ObraSocial("Pami", 226), new Domicilio("Gral Belgrano", 200, "Lanus", "Buenos Aires")));
@@ -183,7 +183,7 @@ public class TestAlta {
 						lstProductos,
 						dbSucursal.encontrar("0001",222L),
 						dbSucursal.encontrar("0001",333L),
-						dbCliente.encontrar(12345687),
+						dbCliente.encontrar(12345111),
 						dbSucursal.encontrar("0001")));
 				lstProductos.clear();
 				//6.cliente Marcos
@@ -196,7 +196,7 @@ public class TestAlta {
 						lstProductos,
 						dbSucursal.encontrar("0001",222L),
 						dbSucursal.encontrar("0001",333L),
-						dbCliente.encontrar(12345687),
+						dbCliente.encontrar(12345111),
 						dbSucursal.encontrar("0001")));
 				lstProductos.clear();
 				//-----Mes 2------//
@@ -223,7 +223,7 @@ public class TestAlta {
 						lstProductos,
 						dbSucursal.encontrar("0001",222L),
 						dbSucursal.encontrar("0001",333L),
-						dbCliente.encontrar(12345687),
+						dbCliente.encontrar(12345111),
 						dbSucursal.encontrar("0001")));
 				lstProductos.clear();
 				//9.cliente Benitez
@@ -247,7 +247,7 @@ public class TestAlta {
 						lstProductos,
 						dbSucursal.encontrar("0001",222L),
 						dbSucursal.encontrar("0001",333L),
-						dbCliente.encontrar(12345687),
+						dbCliente.encontrar(12345111),
 						dbSucursal.encontrar("0001")));
 				lstProductos.clear();
 				//11.cliente Andres
@@ -286,7 +286,7 @@ public class TestAlta {
 						lstProductos,
 						dbSucursal.encontrar("0001",222L),
 						dbSucursal.encontrar("0001",333L),
-						dbCliente.encontrar(12345687),
+						dbCliente.encontrar(12345111),
 						dbSucursal.encontrar("0001")));
 				lstProductos.clear();
 				//14.cliente Benitez
@@ -320,7 +320,7 @@ public class TestAlta {
 						lstProductos,
 						dbSucursal.encontrar("0001",222L),
 						dbSucursal.encontrar("0001",333L),
-						dbCliente.encontrar(12345687),
+						dbCliente.encontrar(12345111),
 						dbSucursal.encontrar("0001")));
 				lstProductos.clear();
 				//17.cliente Andres
@@ -345,7 +345,7 @@ public class TestAlta {
 						lstProductos,
 						dbSucursal.encontrar("0001",222L),
 						dbSucursal.encontrar("0001",333L),
-						dbCliente.encontrar(12345687),
+						dbCliente.encontrar(12345111),
 						dbSucursal.encontrar("0001")));
 				lstProductos.clear();
 				//19.cliente Benitez
@@ -369,7 +369,7 @@ public class TestAlta {
 						lstProductos,
 						dbSucursal.encontrar("0001",222L),
 						dbSucursal.encontrar("0001",333L),
-						dbCliente.encontrar(12345687),
+						dbCliente.encontrar(12345111),
 						dbSucursal.encontrar("0001")));
 				lstProductos.clear();
 				//21.cliente Andres
@@ -407,7 +407,7 @@ public class TestAlta {
 						lstProductos,
 						dbSucursal.encontrar("0001",222L),
 						dbSucursal.encontrar("0001",333L),
-						dbCliente.encontrar(12345687),
+						dbCliente.encontrar(12345111),
 						dbSucursal.encontrar("0001")));
 				lstProductos.clear();
 				//24.cliente Benitez
@@ -429,7 +429,7 @@ public class TestAlta {
 						lstProductos,
 						dbSucursal.encontrar("0001",222L),
 						dbSucursal.encontrar("0001",333L),
-						dbCliente.encontrar(12345687),
+						dbCliente.encontrar(12345111),
 						dbSucursal.encontrar("0001")));
 				lstProductos.clear();
 				//26.cliente Benitez
@@ -463,7 +463,7 @@ public class TestAlta {
 						lstProductos,
 						dbSucursal.encontrar("0001",222L),
 						dbSucursal.encontrar("0001",333L),
-						dbCliente.encontrar(12345687),
+						dbCliente.encontrar(12345111),
 						dbSucursal.encontrar("0001")));
 				lstProductos.clear();
 				//29.cliente Andres
@@ -488,7 +488,7 @@ public class TestAlta {
 						lstProductos,
 						dbSucursal.encontrar("0001",222L),
 						dbSucursal.encontrar("0001",333L),
-						dbCliente.encontrar(12345687),
+						dbCliente.encontrar(12345111),
 						dbSucursal.encontrar("0001")));
 				lstProductos.clear();
 
