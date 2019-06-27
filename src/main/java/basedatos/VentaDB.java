@@ -68,13 +68,22 @@ public class VentaDB extends Conexion {
 		return lista;
 	}
 	
-public AggregateIterable<Document> consulta1(LocalDate fechaInicio, LocalDate fechaFin) {
+	public AggregateIterable<Document> consulta1(LocalDate fechaInicio, LocalDate fechaFin) {
 		
 		return this.db.getCollection("venta").aggregate(Arrays.asList(
 				Aggregates.match(and(gte("fecha",fechaInicio),lt("fecha",fechaFin))),
 				Aggregates.group("$sucursal.ticketFiscal",Accumulators.sum("Cantidad de Ventas",1),Accumulators.sum("Total Ganancias","$totalVenta"))
 				)
 				);
+	}
+
+	public AggregateIterable<Document> consulta2(LocalDate fechaInicio, LocalDate fechaFin) {
+		
+		return this.db.getCollection("venta").aggregate(Arrays.asList(
+			Aggregates.match(and(gte("fecha",fechaInicio),lt("fecha",fechaFin))),
+			Aggregates.group(and(eq("sucursal","$sucursal.ticketFiscal"),eq("obraSocial","$cliente.obraSocial.nombre")),Accumulators.sum("Cantidad de Ventas",1),Accumulators.sum("Total Ganancias","$totalVenta"))
+			)
+			);
 	}
 	
 	public AggregateIterable<Document> consulta3(LocalDate fechaInicio, LocalDate fechaFin) {
@@ -86,20 +95,12 @@ public AggregateIterable<Document> consulta1(LocalDate fechaInicio, LocalDate fe
 			);
 	}
 	
-	public AggregateIterable<Document> consulta2(LocalDate fechaInicio, LocalDate fechaFin) {
-		
-		return this.db.getCollection("venta").aggregate(Arrays.asList(
-			Aggregates.match(and(gte("fecha",fechaInicio),lt("fecha",fechaFin))),
-			Aggregates.group(and(eq("sucursal","$sucursal.ticketFiscal"),eq("obraSocial","$cliente.obraSocial.nombre")),Accumulators.sum("Cantidad de Ventas",1),Accumulators.sum("Total Ganancias","$totalVenta"))
-			)
-			);
-	}
-	
 	public AggregateIterable<Document> consulta4(LocalDate fechaInicio, LocalDate fechaFin) {
 		
 		return this.db.getCollection("venta").aggregate(Arrays.asList(
 			Aggregates.match(and(gte("fecha",fechaInicio),lt("fecha",fechaFin))),
-			Aggregates.group(and(eq("tipo","$productosVendidos.producto.tipo"),eq("sucursal","$sucursal.ticketFiscal")),Accumulators.sum("Cantidad de Ventas",1),Accumulators.sum("Total Ganancias","$totalVenta"))
+			Aggregates.unwind("$productosVendidos"),
+			Aggregates.group(and(eq("tipo","$productosVendidos.producto.tipo"),eq("sucursal","$sucursal.ticketFiscal")),Accumulators.sum("Cantidad de Ventas",1),Accumulators.sum("Total Ganancias","$productosVendidos.subTotalVenta"))
 			)
 			);
 	}
@@ -108,6 +109,7 @@ public AggregateIterable<Document> consulta1(LocalDate fechaInicio, LocalDate fe
 		
 		return this.db.getCollection("venta").aggregate(Arrays.asList(
 			Aggregates.match(and(gte("fecha",fechaInicio),lt("fecha",fechaFin))),
+			Aggregates.unwind("$productosVendidos"),
 			Aggregates.group(and(eq("sucursal","$sucursal.ticketFiscal"),eq("productos","$productosVendidos.producto.descripcion")),Accumulators.sum("Monto","$productosVendidos.subTotalVenta")),
 			Aggregates.sort(Sorts.descending("Monto"))
 			)
@@ -118,8 +120,9 @@ public AggregateIterable<Document> consulta1(LocalDate fechaInicio, LocalDate fe
 		
 		return this.db.getCollection("venta").aggregate(Arrays.asList(
 			Aggregates.match(and(gte("fecha",fechaInicio),lt("fecha",fechaFin))),
+			Aggregates.unwind("$productosVendidos"),
 			Aggregates.group(and(eq("sucursal","$sucursal.ticketFiscal"),eq("productos","$productosVendidos.producto.descripcion")),Accumulators.sum("Cantidad","$productosVendidos.cantidad")),
-			Aggregates.sort(Sorts.descending("Monto"))
+			Aggregates.sort(Sorts.descending("Cantidad"))
 			)
 			);
 	}
@@ -128,6 +131,7 @@ public AggregateIterable<Document> consulta1(LocalDate fechaInicio, LocalDate fe
 		
 		return this.db.getCollection("venta").aggregate(Arrays.asList(
 			Aggregates.match(and(gte("fecha",fechaInicio),lt("fecha",fechaFin))),
+			Aggregates.unwind("$productosVendidos"),
 			Aggregates.group(and(eq("sucursal","$sucursal.ticketFiscal"),eq("cliente","$cliente.apellido")),Accumulators.sum("Monto","$productosVendidos.subTotalVenta")),
 			Aggregates.sort(Sorts.descending("Monto"))
 			)
@@ -138,8 +142,9 @@ public AggregateIterable<Document> consulta1(LocalDate fechaInicio, LocalDate fe
 		
 		return this.db.getCollection("venta").aggregate(Arrays.asList(
 			Aggregates.match(and(gte("fecha",fechaInicio),lt("fecha",fechaFin))),
+			Aggregates.unwind("$productosVendidos"),
 			Aggregates.group(and(eq("sucursal","$sucursal.ticketFiscal"),eq("cliente","$cliente.apellido")),Accumulators.sum("Cantidad","$productosVendidos.cantidad")),
-			Aggregates.sort(Sorts.descending("Monto"))
+			Aggregates.sort(Sorts.descending("Cantidad"))
 			)
 			);
 	}
