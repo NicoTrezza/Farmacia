@@ -30,16 +30,16 @@ public class TestAlta {
 		// Cliente
 		ClienteDB dbCliente = new ClienteDB();
 		
-		dbCliente.insertar(new Cliente("Juan", "Benitez", 12345687, new ObraSocial("Osecac", 122), new Domicilio("San agustin", 141, "San Nicolas", "Buenos Aires")));
-		dbCliente.insertar(new Cliente("Norma", "Andres", 32165498, new ObraSocial("Pami", 222), new Domicilio("Gral Belgrano", 122, "Lanus", "Buenos Aires")));
-		dbCliente.insertar(new Cliente("Marcos", "Ibañez", 12345111, null, new Domicilio("San aguston", 133, "San Nicolas", "Buenos Aires")));
-		dbCliente.insertar(new Cliente("Damian", "Santi", 32165498, new ObraSocial("Pami", 223), new Domicilio("Gral Belgrano", 144, "Lanus", "Buenos Aires")));
-		dbCliente.insertar(new Cliente("Martín", "Olmos", 12345687, new ObraSocial("Galeno", 124), new Domicilio("San aguston", 155, "San Nicolas", "Buenos Aires")));
-		dbCliente.insertar(new Cliente("Nehuén", "Vaez", 32165498, new ObraSocial("Pami", 224), new Domicilio("Gral Belgrano", 166, "Lanus", "Buenos Aires")));
-		dbCliente.insertar(new Cliente("Joaquin", "Aguilar", 12345687, null, new Domicilio("San aguston", 177, "San Nicolas", "Buenos Aires")));
-		dbCliente.insertar(new Cliente("Florencia", "Gutierrez", 32165499, new ObraSocial("Pami", 225), new Domicilio("Gral Belgrano", 188, "Lanus", "Buenos Aires")));
-		dbCliente.insertar(new Cliente("Cristina", "Samaniego", 12345689, new ObraSocial("IOMA", 126), new Domicilio("San aguston", 199, "San Nicolas", "Buenos Aires")));
-		dbCliente.insertar(new Cliente("Analia", "Quiroga", 32165491, null, new Domicilio("Gral Belgrano", 200, "Lanus", "Buenos Aires")));
+		dbCliente.insertar(new Cliente("Juan", "Benitez", 12345687, new ObraSocial("Osecac", 122), new Domicilio("San Agustín", 141, "San Nicolás", "Buenos Aires")));
+		dbCliente.insertar(new Cliente("Norma", "Andrés", 32165498, new ObraSocial("Pami", 222), new Domicilio("Gral Belgrano", 122, "Lanús", "Buenos Aires")));
+		dbCliente.insertar(new Cliente("Marcos", "Ibañez", 12345111, null, new Domicilio("San Agustín", 133, "San Nicolás", "Buenos Aires")));
+		dbCliente.insertar(new Cliente("Damián", "Santi", 32165418, new ObraSocial("Pami", 223), new Domicilio("Gral Belgrano", 144, "Lanús", "Buenos Aires")));
+		dbCliente.insertar(new Cliente("Martín", "Olmos", 12345457, new ObraSocial("Osecac", 124), new Domicilio("San Agustín", 155, "San Nicolás", "Buenos Aires")));
+		dbCliente.insertar(new Cliente("Nehuén", "Vaez", 32165468, new ObraSocial("Pami", 224), new Domicilio("Gral Belgrano", 166, "Lanús", "Buenos Aires")));
+		dbCliente.insertar(new Cliente("Joaquin", "Aguilar", 12345127, null, new Domicilio("San Agustín", 177, "San Nicolás", "Buenos Aires")));
+		dbCliente.insertar(new Cliente("Florencia", "Gutierrez", 32165499, new ObraSocial("Pami", 225), new Domicilio("Gral Belgrano", 188, "Lanús", "Buenos Aires")));
+		dbCliente.insertar(new Cliente("Cristina", "Samaniego", 12345689, new ObraSocial("IOMA", 126), new Domicilio("San Agustín", 199, "San Nicolás", "Buenos Aires")));
+		dbCliente.insertar(new Cliente("Analía", "Quiroga", 32165491, null, new Domicilio("Gral Belgrano", 200, "Lanús", "Buenos Aires")));
 		
 		for (Cliente persona : dbCliente.encontrar()) {
 //			System.out.println("Cliente : "+persona.toJson().toJson(new JsonWriterSettings(JsonMode.SHELL)));
@@ -48,11 +48,11 @@ public class TestAlta {
 		// Cliente
 		EmpleadoDB dbEmpleado = new EmpleadoDB();
 		
-		dbEmpleado.insertar(new Empleado("Lionel", "Messi", 12345680, new ObraSocial("Galeno", 333), new Domicilio("San Martin", 11, "Avellaneda", "Buenos Aires"), 555l));
+		dbEmpleado.insertar(new Empleado("Lionel", "Messi", 12345680, new ObraSocial("Galeno", 333), new Domicilio("San Martín", 11, "Avellaneda", "Buenos Aires"), 555l));
 		dbEmpleado.insertar(new Empleado("José", "Lucero", 12345679, new ObraSocial("Galeno", 333), new Domicilio("Martinez", 666, "Belgrano", "Buenos Aires"), 444l));
 		dbEmpleado.insertar(new Empleado("Victor", "Ibañez", 36068006, new ObraSocial("IOMA", 666), new Domicilio("Calle 832", 2070, "Quilmes", "Buenos Aires"), 333l));
 		dbEmpleado.insertar(new Empleado("Nico", "Trezza", 12345678, new ObraSocial("Osecac", 667), new Domicilio("Calle A", 777, "Turdela", "Buenos Aires"), 222l));
-		dbEmpleado.insertar(new Empleado("Pablo", "Lopez", 38601565, new ObraSocial("IOMA", 668), new Domicilio("Calle B", 2200, "Temperley", "Buenos Aires"), 111l));
+		dbEmpleado.insertar(new Empleado("Pablo", "López", 38601565, new ObraSocial("IOMA", 668), new Domicilio("Calle B", 2200, "Temperley", "Buenos Aires"), 111l));
 		
 		for (Empleado persona : dbEmpleado.encontrar()) {
 //			System.out.println("Empleado : "+persona.toJson().toJson(new JsonWriterSettings(JsonMode.SHELL)));
@@ -501,10 +501,10 @@ public class TestAlta {
 				int numeroTicket = 100;
 				
 					// clientes:
-				int dniCliente1 = 32165498; //Santi
-				int dniCliente2 = 12345687; //Olmos
-				int dniCliente3 = 32165498; //Vaez
-				int dniCliente4 = 12345687; //Aguilar
+				int dniCliente1 = 32165418; //Santi
+				int dniCliente2 = 12345457; //Olmos
+				int dniCliente3 = 32165468; //Vaez
+				int dniCliente4 = 12345127; //Aguilar
 				
 				//-----Mes 1------//
 				//1.cliente Santi
